@@ -3,5 +3,6 @@
     public interface IEstimate
     {
         public decimal CalculateProbabilityDistribution();
+        public decimal CalculateStandardDeviation();
     }
 }
