@@ -1,21 +1,22 @@
 ﻿namespace Estimate.Dev
 {
-    public class Estimate
+    public class Estimate : IEstimate
     {
-        private int optimistic;
-        private int nominal;
-        private int pessimistic;
+        private decimal optimistic;
+        private decimal nominal;
+        private decimal pessimistic;
 
-        public Estimate(int optimistic, int nominal, int pessimistic)
+        public Estimate(decimal optimistic, decimal nominal, decimal pessimistic)
         {
             this.optimistic = optimistic;
             this.nominal = nominal;
             this.pessimistic = pessimistic;
         }
 
-        public object CalculateProbabilityDistribution()
+        public decimal CalculateProbabilityDistribution()
         {
-            throw new NotImplementedException();
+            var result = (optimistic + 4 * nominal + pessimistic) / 6;
+            return decimal.Round(result, 2, MidpointRounding.ToZero);
         }
     }
 }
