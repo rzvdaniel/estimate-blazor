@@ -4,5 +4,6 @@
     {
         public decimal CalculateProbabilityDistribution();
         public decimal CalculateStandardDeviation();
+        public bool ValidateArguments();
     }
 }
