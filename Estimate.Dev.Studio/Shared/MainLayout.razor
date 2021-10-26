@@ -2,8 +2,40 @@
 
 <div class="page">
     <main>
-        <article class="content px-4">
-            @Body
-        </article>
+        <Layout Class="layout">
+            <Header>
+                <div class="logo">
+                    <h4>Estimation Studio</h4>
+                </div>
+                <Menu Theme="MenuTheme.Dark" Mode="MenuMode.Horizontal" DefaultSelectedKeys=@(new[]{"1"})>
+                    <MenuItem Key="1">Developers</MenuItem>
+                </Menu>
+            </Header>
+            <Content Style="padding: 0 50px;">
+                <div class="site-layout-content">
+                    @Body
+                </div>
+            </Content>
+            <Footer Style="text-align: center; ">Estimation Studio ©2021 Created by Razvan Predescu</Footer>
+        </Layout>
     </main>
 </div>
+
+<style>
+    .site-layout-content {
+        background: #fff;
+        padding: 24px;
+        min-height: 280px;
+    }
+    .layout .logo {
+        height: 31px;
+        margin: 16px 24px 16px 0;
+        float: left;
+        vertical-align: central;
+    }
+
+    .layout .logo h4 {
+        color: white;
+    }
+
+</style>
