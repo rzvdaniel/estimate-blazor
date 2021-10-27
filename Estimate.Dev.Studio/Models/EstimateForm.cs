@@ -1,9 +1,11 @@
-﻿namespace Estimate.Dev.Studio.Models
+﻿namespace Estimate.Studio.Models
 {
-    class EstimateForm
+    public class EstimateForm
     {
         public decimal Optimistic { get; set; }
         public decimal Nominal { get; set; }
         public decimal Pessimistic { get; set; }
+        public decimal ProbabilityDistribution { get; set; }
+        public decimal StandardDeviation { get; set; }
     }
 }

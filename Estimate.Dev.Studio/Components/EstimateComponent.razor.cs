@@ -1,8 +1,8 @@
 ﻿using AntDesign.Internal;
-using Estimate.Dev.Studio.Models;
+using Estimate.Studio.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace Estimate.Dev.Studio.Components
+namespace Estimate.Studio.Components
 {
     public partial class EstimateComponent : ComponentBase
     {
@@ -12,6 +12,13 @@ namespace Estimate.Dev.Studio.Components
         protected override void OnInitialized()
         {
             base.OnInitialized();
+        }
+
+        private void CalculateClick()
+        {
+            var estimate = new Dev.Estimate(formData.Optimistic, formData.Nominal, formData.Pessimistic);
+            formData.ProbabilityDistribution = estimate.CalculateProbabilityDistribution();
+            formData.StandardDeviation = estimate.CalculateStandardDeviation();
         }
     }
 }

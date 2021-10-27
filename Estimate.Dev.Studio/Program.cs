@@ -1,4 +1,4 @@
-using Estimate.Dev.Studio;
+using Estimate.Studio;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 

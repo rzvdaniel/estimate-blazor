@@ -1,4 +1,4 @@
-﻿namespace Estimate.Dev.Studio.Pages
+﻿namespace Estimate.Studio.Pages
 {
     public partial class Index
     {
