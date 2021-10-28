@@ -1,24 +1,36 @@
 ﻿using AntDesign.Internal;
 using Estimate.Studio.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace Estimate.Studio.Components
 {
     public partial class EstimateComponent : ComponentBase
     {
-        IForm? _form;
-        EstimateForm formData = new();
+        private IForm estimateForm;
+        private readonly EstimateModel estimateModel = new();
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
         }
 
-        private void CalculateClick()
+        private void OnFinish(EditContext editContext)
         {
-            var estimate = new Dev.Estimate(formData.Optimistic, formData.Nominal, formData.Pessimistic);
-            formData.ProbabilityDistribution = estimate.CalculateProbabilityDistribution();
-            formData.StandardDeviation = estimate.CalculateStandardDeviation();
+            Calculate();
+        }
+
+        private void Calculate()
+        {
+            var estimate = new Dev.Estimate(estimateModel.Optimistic, estimateModel.Nominal, estimateModel.Pessimistic);
+            estimateModel.ProbabilityDistribution = estimate.CalculateProbabilityDistribution();
+            estimateModel.StandardDeviation = estimate.CalculateStandardDeviation();
+        }
+
+        private void ResetForm()
+        {
+            estimateModel.Clear();
+            estimateForm.Reset();
         }
     }
 }

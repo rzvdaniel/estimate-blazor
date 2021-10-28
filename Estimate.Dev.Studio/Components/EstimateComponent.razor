@@ -1,29 +1,34 @@
 ﻿@using Microsoft.AspNetCore.Authorization;
 
 <div>
-    <Form @ref="_form" Model="formData" Name="Estimation Form" Class="ant-advanced-search-form">
+    <Form @ref="estimateForm" 
+        Model="estimateModel" 
+        Name="Estimation Form"
+        Class="ant-advanced-search-form"
+        OnFinish="OnFinish">
+
         <Row Gutter="24">
             <GridCol Span="6" @key="1">
                 <FormItem Label="Optimistic (days)">
-                    <Input @bind-Value="@context.Optimistic" Size="30" />
+                    <AntDesign.InputNumber @bind-Value="@context.Optimistic" Size="30" Min="0" DefaultValue="0" />
                 </FormItem>
             </GridCol>
 
             <GridCol Span="6" @key="2">
                 <FormItem Label="Nominal (days)">
-                    <Input @bind-Value="@context.Nominal" />
+                    <AntDesign.InputNumber @bind-Value="@context.Nominal" Min="0" DefaultValue="0" />
                 </FormItem>
             </GridCol>
 
             <GridCol Span="6" @key="3">
                 <FormItem Label="Pessimistic (days)">
-                    <Input @bind-Value="@context.Pessimistic" />
+                    <AntDesign.InputNumber @bind-Value="@context.Pessimistic" Min="0" DefaultValue="0" />
                 </FormItem>
             </GridCol>
 
             <GridCol Span="6" @key="4">
-                <Button Type="primary" HtmlType="submit" OnClick="()=>{CalculateClick();}">Calculate</Button>
-                <Button Style="margin: 0 8px;" OnClick="()=>{_form?.Reset();}">Clear</Button>
+                <Button Type="primary" HtmlType="submit">Calculate</Button>
+                <Button Style="margin: 0 8px;" OnClick="()=>{ResetForm();}">Clear</Button>
             </GridCol>
         </Row>
 
