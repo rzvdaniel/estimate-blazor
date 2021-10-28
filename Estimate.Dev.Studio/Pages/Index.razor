@@ -1,6 +1,9 @@
 ﻿@page "/"
 @using Estimate.Studio.Components;
-<PageTitle>Estimate Studio</PageTitle>
+@using Microsoft.AspNetCore.Authorization;
+@attribute [AllowAnonymous]
+
+<PageTitle>Estimation Monster</PageTitle>
 
 <div>
     <Paragraph Style="text-align: center; margin: 20px">
