@@ -59,6 +59,44 @@
                 -webkit-transform: scale(1.0)
             }
         }
+
+        .ant-typography blockquote {
+            border-left: 0px hidden;
+            padding: 0px;
+        }
+
+        blockquote {
+            font-size: 2em;
+            background: #fff;
+            border-left: 0px hidden;
+            margin: 1.5em 10px;
+            padding: 0.5em 10px;
+            quotes: "\201C";
+        }
+
+            blockquote:before {
+                color: #ccc;
+                content: "\201C";
+                font-size: 4em;
+                line-height: 0.1em;
+                margin-right: 0.1em;
+                vertical-align: -0.4em;
+            }
+
+            blockquote p {
+                display: inline;
+            }
+
+            blockquote cite {
+                color: #870237;
+                font-size: 13px;
+                display: block;
+                margin-top: 5px;
+            }
+
+                blockquote cite:before {
+                    content: "\2014 \2009";
+                }
     </style>
 </head>
 
@@ -66,7 +104,16 @@
     <div id="app">
         <div class="loading-section">
             <h2>Estimation Monster</h2>
-            <div class="short-description">A software development estimations booster</div>
+            <div class="short-description">
+                <Paragraph Style="text-align: center; margin: 20px">
+                    <blockquote>
+                        <p>
+                            An estimate is not a number. An estimate is a distribution.
+                            <cite>Robert C. Martin, Clean Coder</cite>
+                        </p>
+                    </blockquote>
+                </Paragraph>
+            </div>
             <div class="loader mt-5">
                 <div class="loader-dot dot1"></div>
                 <div class="loader-dot dot2"></div>

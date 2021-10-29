@@ -20,6 +20,8 @@ namespace Estimate.Studio.Models
 
         public decimal StandardDeviation { get; set; }
 
+        public decimal Total => ProbabilityDistribution + StandardDeviation;
+
         public void Clear()
         {
             Optimistic = 0;

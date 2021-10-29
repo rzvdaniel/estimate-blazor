@@ -1,70 +1,86 @@
 ﻿@using Microsoft.AspNetCore.Authorization;
 
 <div>
-    <Form @ref="estimateForm" 
-        Model="estimateModel" 
-        Name="Estimation Form"
-        Class="ant-advanced-search-form"
-        OnFinish="OnFinish">
+    <Form Model="estimateModel"
+          Name="Estimation Form"
+          Class="ant-advanced-search-form"
+          OnFinish="OnFinish">
 
         <Row Gutter="24">
-            <GridCol Span="6" @key="1">
-                <FormItem Label="Optimistic (days)">
-                    <AntDesign.InputNumber @bind-Value="@context.Optimistic" Size="30" Min="0" DefaultValue="0" />
-                </FormItem>
-            </GridCol>
-
-            <GridCol Span="6" @key="2">
-                <FormItem Label="Nominal (days)">
-                    <AntDesign.InputNumber @bind-Value="@context.Nominal" Min="0" DefaultValue="0" />
-                </FormItem>
-            </GridCol>
-
-            <GridCol Span="6" @key="3">
-                <FormItem Label="Pessimistic (days)">
-                    <AntDesign.InputNumber @bind-Value="@context.Pessimistic" Min="0" DefaultValue="0" />
-                </FormItem>
-            </GridCol>
-
-            <GridCol Span="6" @key="4">
-                <Button Type="primary" HtmlType="submit">Calculate</Button>
-                <Button Style="margin: 0 8px;" OnClick="()=>{ResetForm();}">Clear</Button>
+            <GridCol Span="24" @key="1">
+                <Space Wrap Align="center">
+                    <SpaceItem>
+                        <FormItem Label="Optimistic (days)">
+                            <AntDesign.InputNumber @bind-Value="@context.Optimistic" Size="30" Min="0" DefaultValue="0" />
+                        </FormItem>
+                    </SpaceItem>
+                    <SpaceItem>
+                        <FormItem Label="Nominal (days)">
+                            <AntDesign.InputNumber @bind-Value="@context.Nominal" Min="0" DefaultValue="0" />
+                        </FormItem>
+                    </SpaceItem>
+                    <SpaceItem>
+                        <FormItem Label="Pessimistic (days)">
+                            <AntDesign.InputNumber @bind-Value="@context.Pessimistic" Min="0" DefaultValue="0" />
+                        </FormItem>
+                    </SpaceItem>
+                    <SpaceItem Class="ant-form-item">
+                        <Button Type="primary" HtmlType="submit">Calculate</Button>
+                    </SpaceItem>
+                </Space>
             </GridCol>
         </Row>
 
         <div class="site-statistic-demo-card">
-            <Row Gutter="16">
-                <Col Span="12">
-                <Card>
-                    <Space Direction="DirectionVHType.Vertical">
-                        <SpaceItem>
-                            <Statistic Title="Probability Distribution" Value="@context.ProbabilityDistribution" Precision="1" ValueStyle="color: #3f8600;" Suffix="days">
-                                <PrefixTemplate>
-                                    <span><Icon Type="calendar" /></span>
-                                </PrefixTemplate>
-                            </Statistic>
-                        </SpaceItem>
-                        <SpaceItem>
-                            (O + 4 * N + P) / 6
-                        </SpaceItem>
-                    </Space>
-                </Card>
-                </Col>
-                <Col Span="12">
-                <Card>
-                    <Space Direction="DirectionVHType.Vertical">
-                        <SpaceItem>
-                            <Statistic Title="Standard Deviation" Value="@context.StandardDeviation" Precision="1" ValueStyle="color: orange;" Suffix="days">
-                                <PrefixTemplate>
-                                    <span><Icon Type="calendar" /></span>
-                                </PrefixTemplate>
-                            </Statistic>
-                        </SpaceItem>
-                        <SpaceItem>
-                            Sigma = (P - O) / 6
-                        </SpaceItem>
-                    </Space>
-                </Card>
+            <Row Gutter="24" Wrap>
+                <Col Span="24">
+                <Space Wrap>
+                    <SpaceItem>
+                        <Card Style="margin-top: 10px; min-width: 150px">
+                            <Space Direction="DirectionVHType.Vertical">
+                                <SpaceItem>
+                                    <Statistic Title="Probability Distribution" Value="@context.ProbabilityDistribution" Precision="1" ValueStyle="color: #3f8600;" Suffix="days">
+                                        <PrefixTemplate>
+                                            <span><Icon Type="dot-chart" /></span>
+                                        </PrefixTemplate>
+                                    </Statistic>
+                                </SpaceItem>
+                                <SpaceItem>
+                                    (O + 4 * N + P) / 6
+                                </SpaceItem>
+                            </Space>
+                        </Card>
+                    </SpaceItem>
+
+                    <SpaceItem>
+                        <Card Style="margin-top: 10px; min-width: 150px">
+                            <Space Direction="DirectionVHType.Vertical">
+                                <SpaceItem>
+                                    <Statistic Title="Standard Deviation" Value="@context.StandardDeviation" Precision="1" ValueStyle="color: orange;" Suffix="days">
+                                        <PrefixTemplate>
+                                            <span><Icon Type="bar-chart" /></span>
+                                        </PrefixTemplate>
+                                    </Statistic>
+                                </SpaceItem>
+                                <SpaceItem>
+                                    (P - O) / 6
+                                </SpaceItem>
+                            </Space>
+                        </Card>
+                    </SpaceItem>
+
+                    <SpaceItem>
+                        <Card Style="margin-top: 10px; min-width: 150px">
+                            <Space Direction="DirectionVHType.Vertical">
+                                <Statistic Title="Total" Value="@context.Total" Precision="1" Suffix="days">
+                                    <PrefixTemplate>
+                                        <span><Icon Type="calendar" /></span>
+                                    </PrefixTemplate>
+                                </Statistic>
+                            </Space>
+                        </Card>
+                    </SpaceItem>
+                </Space>
                 </Col>
             </Row>
         </div>
