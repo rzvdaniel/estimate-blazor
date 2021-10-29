@@ -1,31 +1,35 @@
 ﻿@using Microsoft.AspNetCore.Authorization;
 
-<div>
-    <Form Model="estimateModel"
-          Name="Estimation Form"
-          Class="ant-advanced-search-form"
-          OnFinish="OnFinish">
+<div style="text-align: center;">
+    <Form @ref="estimateForm"
+        Model="estimateModel"
+        Name="Estimation Form"
+        Class="ant-advanced-search-form"
+        OnFinish="OnFinish">
 
         <Row Gutter="24">
             <GridCol Span="24" @key="1">
                 <Space Wrap Align="center">
                     <SpaceItem>
-                        <FormItem Label="Optimistic (days)">
+                        <FormItem Label="Optimistic (days)" style="text-align: left;">
                             <AntDesign.InputNumber @bind-Value="@context.Optimistic" Size="30" Min="0" DefaultValue="0" />
                         </FormItem>
                     </SpaceItem>
                     <SpaceItem>
-                        <FormItem Label="Nominal (days)">
+                        <FormItem Label="Nominal (days)" style="text-align: left;">
                             <AntDesign.InputNumber @bind-Value="@context.Nominal" Min="0" DefaultValue="0" />
                         </FormItem>
                     </SpaceItem>
                     <SpaceItem>
-                        <FormItem Label="Pessimistic (days)">
+                        <FormItem Label="Pessimistic (days)" style="text-align: left;">
                             <AntDesign.InputNumber @bind-Value="@context.Pessimistic" Min="0" DefaultValue="0" />
                         </FormItem>
                     </SpaceItem>
-                    <SpaceItem Class="ant-form-item">
-                        <Button Type="primary" HtmlType="submit">Calculate</Button>
+                    <SpaceItem>
+                        <FormItem>
+                            <Button Type="primary" HtmlType="submit">Calculate</Button>
+                            <Button OnClick="()=>{ResetForm();}">Clear</Button>
+                        </FormItem>
                     </SpaceItem>
                 </Space>
             </GridCol>
@@ -36,24 +40,24 @@
                 <Col Span="24">
                 <Space Wrap>
                     <SpaceItem>
-                        <Card Style="margin-top: 10px; min-width: 150px">
+                        <Card Style="margin-top: 10px; min-width: 150px; width: 200px; height: 200px">
                             <Space Direction="DirectionVHType.Vertical">
                                 <SpaceItem>
-                                    <Statistic Title="Probability Distribution" Value="@context.ProbabilityDistribution" Precision="1" ValueStyle="color: #3f8600;" Suffix="days">
+                                    <Statistic Title="Probability Distribution" Value="@context.ProbabilityDistribution" Precision="1" Suffix="days">
                                         <PrefixTemplate>
                                             <span><Icon Type="dot-chart" /></span>
                                         </PrefixTemplate>
                                     </Statistic>
                                 </SpaceItem>
                                 <SpaceItem>
-                                    (O + 4 * N + P) / 6
-                                </SpaceItem>
+                                    σ = (O + 4*N + P) / 6
+        align-content               </SpaceItem>
                             </Space>
                         </Card>
                     </SpaceItem>
 
                     <SpaceItem>
-                        <Card Style="margin-top: 10px; min-width: 150px">
+                        <Card Style="margin-top: 10px; min-width: 150px; width: 200px; height: 200px">
                             <Space Direction="DirectionVHType.Vertical">
                                 <SpaceItem>
                                     <Statistic Title="Standard Deviation" Value="@context.StandardDeviation" Precision="1" ValueStyle="color: orange;" Suffix="days">
@@ -63,23 +67,46 @@
                                     </Statistic>
                                 </SpaceItem>
                                 <SpaceItem>
-                                    (P - O) / 6
+                                    μ = (P - O) / 6
                                 </SpaceItem>
                             </Space>
                         </Card>
                     </SpaceItem>
 
                     <SpaceItem>
-                        <Card Style="margin-top: 10px; min-width: 150px">
+                        <Card Style="margin-top: 10px; min-width: 150px; width: 200px; height: 200px">
                             <Space Direction="DirectionVHType.Vertical">
-                                <Statistic Title="Total" Value="@context.Total" Precision="1" Suffix="days">
+                                <SpaceItem>
+                                <Statistic Title="Total Estimation" Value="@context.Total" ValueStyle="color: #3f8600;" Precision="1" Suffix="days">
                                     <PrefixTemplate>
                                         <span><Icon Type="calendar" /></span>
                                     </PrefixTemplate>
                                 </Statistic>
+                                </SpaceItem>
+                                <SpaceItem>
+                                    <span>E = σ + μ</span>
+                                </SpaceItem>
                             </Space>
                         </Card>
                     </SpaceItem>
+
+                    <SpaceItem>
+                        <Card Style="margin-top: 10px; min-height: 200px">
+                            <h4>Instructions</h4>
+                            <ul style="text-align: left;">
+                                <li>
+                                    Enter Optimistic, Nominal (most likely) and Pessimistic estimations
+                                </li>
+                                <li>
+                                    Press Calculate button
+                                </li>
+                                <li>
+                                    <span>Total Estimation = σ + μ</span>
+                                </li>
+                            </ul>
+                        </Card>
+                    </SpaceItem>
+
                 </Space>
                 </Col>
             </Row>
@@ -90,6 +117,10 @@
 <style>
     .site-statistic-demo-card {
         background: #ececec;
-        padding: 30px;
+        padding: 10px;
+    }
+
+    span.ant-statistic-content-prefix {
+        vertical-align: text-bottom;
     }
 </style>

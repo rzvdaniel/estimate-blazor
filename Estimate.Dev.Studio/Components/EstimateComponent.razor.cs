@@ -8,6 +8,7 @@ namespace Estimate.Studio.Components
     public partial class EstimateComponent : ComponentBase
     {
         private readonly EstimateModel estimateModel = new();
+        private IForm estimateForm;
 
         protected override void OnInitialized()
         {
@@ -24,6 +25,12 @@ namespace Estimate.Studio.Components
             var estimate = new Dev.Estimate(estimateModel.Optimistic, estimateModel.Nominal, estimateModel.Pessimistic);
             estimateModel.ProbabilityDistribution = estimate.CalculateProbabilityDistribution();
             estimateModel.StandardDeviation = estimate.CalculateStandardDeviation();
+        }
+
+        private void ResetForm()
+        {
+            estimateModel.Clear();
+            estimateForm.Reset();
         }
     }
 }
