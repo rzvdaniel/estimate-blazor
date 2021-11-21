@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Authorization;
+@using Estimate.Studio.Validators;
 
 <div style="text-align: center;">
     <Form @ref="estimateForm"
@@ -6,6 +7,15 @@
         Name="Estimation Form"
         Class="ant-advanced-search-form"
         OnFinish="OnFinish">
+
+        <Row Gutter="24">
+            <GridCol Span="24" @key="1">
+                <Space Wrap Align="center">
+                    <CustomValidation @ref="customValidation" />
+                    <ValidationSummary />
+                </Space>
+            </GridCol>
+        </Row>
 
         <Row Gutter="24">
             <GridCol Span="24" @key="1">

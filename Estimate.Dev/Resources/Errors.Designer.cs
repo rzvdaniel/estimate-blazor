@@ -61,7 +61,7 @@ namespace Estimate.Dev.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nominalcan not be bigger than Pessimistic.
+        ///   Looks up a localized string similar to Nominal can not be bigger than Pessimistic.
         /// </summary>
         public static string NominalBiggerThanPessimistic {
             get {
